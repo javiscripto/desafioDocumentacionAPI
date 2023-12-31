@@ -7,7 +7,7 @@ info:
 paths:
   /api/products/:
     get:
-      summary: Obtiene un array con todos los productos
+      summary: Obtiene un array con todos los productos o bien un producto por su id
       tags:
         - products
       parameters:
@@ -53,10 +53,10 @@ components:
           description: Código del producto de uso interno
         price:
           type: number
-          description: Precio del producto en peso chileno
+          description: Precio del producto en la moneda local
         status:
           type: boolean
-          description: Indica si un producto está activo
+          description: Indica si un producto está activo, es decir, 
         owner:
           type: string
           description: Contiene el ID del usuario que ingresó el producto.

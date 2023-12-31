@@ -17,8 +17,12 @@ class ProductClass{
 
     getById=async(pid)=>{
         try {
+            const product=await productModel.finById(pid)
+            if(!product){
+                return null
+            };
+            return product;
             
-
         } catch (error) {
             console.error("ha ocurrido un error en la db:", error)
         }
@@ -26,7 +30,8 @@ class ProductClass{
 
     createProduct=async(productData)=>{
         try {
-            
+            const newProduct = await productModel.create(productData);
+            return newProduct;
 
         } catch (error) {
             console.error("ha ocurrido un error en la db:", error)
@@ -35,7 +40,8 @@ class ProductClass{
 
     deleteProduct=async(pid)=>{
     try {
-        
+        const deletedProduct= await productModel.findByIdAndDelete(pid);
+        return deletedProduct
 
     } catch (error) {
         console.error("ha ocurrido un error en la db:", error)
