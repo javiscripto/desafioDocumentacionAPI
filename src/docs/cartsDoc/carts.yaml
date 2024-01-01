@@ -1,44 +1,65 @@
 openapi: 3.0.1
 info:
-  title:  API carts section
-  description: la ruta carts 
+  title: API carts section
+  description: Ruta para operaciones relacionadas con carritos
   version: 1.0.0
 
 paths:
   /api/carts/:
     get:
-      summary: Obtiene un array con todos los carritos o un carrito por su id(/api/carts/)
+      summary: Obtiene todos los carritos o un carrito por su ID
       tags:
         - carts
       parameters:
         - name: cid
           in: query
-          description: parámetro opcional, buscar un carrito por su id (/api/carts/idDelCarrito)
+          description: Parámetro opcional para buscar un carrito por su ID (/api/carts/idDelCarrito)
           schema:
             type: string
-  
+
       responses:
         "200":
-          description: Se obtuvo el recurso de la base de datos
+          description: Éxito al obtener el recurso de la base de datos
         "500":
           description: Error interno en el servidor
-  
+
     post:
-      summary: crecibe un id de objeto usuario por query params y crea un nuevo objeto carrito el cual es agregado al array carts del usuario
+      summary: Crea un nuevo carrito y lo asocia a un usuario mediante su ID
       tags:
         - carts
       parameters:
         - name: uid
           in: query
-          description: parametro obligatorio para buscar al usuario en la base de datos. 
+          description: Parámetro obligatorio para buscar al usuario en la base de datos.
           schema:
             type: string
       responses:
         "200":
-          description: Se obtuvo el recurso de la base de datos
+          description: Éxito al obtener el recurso de la base de datos
         "500":
           description: Error interno en el servidor
-      
+
+  /api/carts/{cid}/products/{pid}:
+    delete:
+      summary: Elimina un producto del carrito por su ID
+      tags:
+        - carts
+      parameters:
+        - name: cid
+          in: path
+          description: ID del carrito para encontrarlo en la base de datos
+          schema:
+            type: string
+        - name: pid
+          in: path
+          description: ID del producto a eliminar
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Éxito al obtener el recurso de la base de datos
+        "500":
+          description: Error interno en el servidor
 
 components:
   schemas:
@@ -47,7 +68,7 @@ components:
       properties:
         _id:
           type: string
-          description: Id auto generado por mongoose
+          description: ID auto generado por mongoose
         products:
           type: array
           description: Contiene los productos agregados en el carrito

@@ -32,7 +32,16 @@ paths:
           description: Se obtuvo el recurso de la base de datos
         "500":
           description: Error interno en el servidor
-      
+  /api/products/{pid}:
+      summary: recibe un objeto y lo almacena en la base de datos
+      tags:
+        - products
+      parameters:
+        - name: pid
+          in: query
+          description: corresponde al id del producto a eliminar en la base de datos
+          schema:
+            type: string    
 
 components:
   schemas:
