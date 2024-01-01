@@ -45,6 +45,8 @@ const createProduct=async(req, res)=>{
 const deleteProduct=async(req, res)=>{
     try {
         const pid= req.params.pid;
+        const result = await productService.deleteProduct(pid);
+        res.send({status:"success", message:"producto eliminado", product:result})
         
     } catch (error) {
         res.status(500).send(`ha ocurrido un error en el servidor`)

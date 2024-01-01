@@ -28,15 +28,21 @@ const getById=async(req, res)=>{
 
 const createCart=async(req, res)=>{
     try {
-        
+        const result= await cartService.createCart();
+        res.status(200).send({status: "success", payload: result})
     } catch (error) {
         res.status(500).send(`ha ocurrido un error en el servidor`)
 
     }
 };
 
-const deleteCart=async(req, res)=>{
+const deleteProduct=async(req, res)=>{
     try {
+        const cid= req.params.cid;
+        const pid= req.params.cid;
+
+        const result= await cartService.deleteProduct(pid,cid);
+        res.send({result: result})
         
     } catch (error) {
         res.status(500).send(`ha ocurrido un error en el servidor`)
@@ -45,4 +51,4 @@ const deleteCart=async(req, res)=>{
 };
 
 
-module.exports={getAll, getById,createCart, deleteCart}
+module.exports={getAll, getById,createCart, deleteProduct}
